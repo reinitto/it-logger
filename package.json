@@ -17,8 +17,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "server": "node server.js",
+    "start": "node server.js",
     "dev": "concurrently npm:start npm:server",
     "build": "react-scripts build"
   },
