@@ -28,6 +28,7 @@ export const getLogs = () => async dispatch => {
     setLoading();
     const res = await fetch('/logs');
     const data = await res.json();
+    console.log('data', data);
     dispatch({
       type: GET_LOGS,
       payload: data
