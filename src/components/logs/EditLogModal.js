@@ -25,7 +25,7 @@ const EditLogModal = ({ updateLog, current, clearCurrent }) => {
       });
     } else {
       const updLog = {
-        id: current.id,
+        id: current._id,
         message,
         attention,
         tech,
