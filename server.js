@@ -24,4 +24,14 @@ app.use('/logs', require('./routes/logs'));
 //     res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
 //   );
 // }
+
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/ping', function(req, res) {
+  return res.send('pong');
+});
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
