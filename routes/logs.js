@@ -25,14 +25,30 @@ router.post('/', async (req, res) => {
 // @desc        Get all logs
 // @access      Public
 router.get('/', async (req, res) => {
-  try {
-    let logs = await Log.find().sort({
-      date: -1
-    });
-    res.json(logs);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Server Error');
+  if (req.query.q) {
+    try {
+      // works only for full words not partials
+      // let logs = await Log.find({ $text: { $search: req.query.q } }).sort({
+      //   date: -1
+      // });
+      let re = new RegExp(req.query.q, 'i');
+      let logs = await Log.find({
+        $or: [{ message: { $regex: re } }, { tech: { $regex: re } }]
+      });
+      res.json(logs);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
+    }
+  } else {
+    try {
+      let logs = await Log.find().sort({
+        date: -1
+      });
+      res.json(logs);
+    } catch (error) {
+      res.status(500).send('Server Error');
+    }
   }
 });
 // @route       PUT /logs/id

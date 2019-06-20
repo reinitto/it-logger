@@ -17,4 +17,8 @@ const LogSchema = mongoose.Schema({
   }
 });
 
+// LogSchema.index({
+//   message: 'text',
+//   tech: 'text'
+// });
 module.exports = mongoose.model('log', LogSchema);
