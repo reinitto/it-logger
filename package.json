@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "concurrently npm:start npm:server",
+    "dev": "nodemon start",
     "build": "react-scripts build"
   },
   "eslintConfig": {
